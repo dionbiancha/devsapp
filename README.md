@@ -1,2 +1,0 @@
-# Devsapp
-Developer chat app
