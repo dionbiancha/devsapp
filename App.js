@@ -1,22 +1,33 @@
 import React, { Component } from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
-import firebase from './src/FirebaseConnection';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import ReduxThunk from 'redux-thunk';
 
-class App extends Component {
+import Reducers from './src/Reducers';
+import Preload from './src/Preload';
+import Home from './src/Home';
+
+let store = createStore(Reducers, applyMiddleware(ReduxThunk));
+
+const Stack = createStackNavigator({
+  Preload: {
+    screen: Preload
+  },
+  Home: {
+    screen: Home
+  }
+});
+
+const Container = createAppContainer(Stack);
+
+export default class App extends Component {
   render() {
-    return (
-      <View>
-        <Text>Teste</Text>
-      </View>
+    return(
+      <Provider store={store}> 
+        <Container />
+      </Provider>
     );
   }
 }
-
-export default App;
