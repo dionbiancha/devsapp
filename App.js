@@ -6,17 +6,15 @@ import { createStore, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
 
 import Reducers from './src/Reducers';
+
 import Preload from './src/Preload';
-import Home from './src/Home';
+//import Home from './src/Home';
 
 let store = createStore(Reducers, applyMiddleware(ReduxThunk));
 
 const Stack = createStackNavigator({
   Preload: {
     screen: Preload
-  },
-  Home: {
-    screen: Home
   }
 });
 
