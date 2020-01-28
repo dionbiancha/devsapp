@@ -8,13 +8,20 @@ import ReduxThunk from 'redux-thunk';
 import Reducers from './src/Reducers';
 
 import Preload from './src/Preload';
-//import Home from './src/Home';
+import Home from './src/Home';
+import Conversas from './src/Conversas';
 
 let store = createStore(Reducers, applyMiddleware(ReduxThunk));
 
 const Stack = createStackNavigator({
   Preload: {
     screen: Preload
+  },
+  Home: {
+    screen: Home
+  },
+  Conversas: {
+    screen: Conversas
   }
 });
 

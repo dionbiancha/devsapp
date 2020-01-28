@@ -15,7 +15,7 @@ export const checkLogin = () => {
             dispatch({
                 type: 'changeStatus',
                 payload: {
-                    status: 0
+                    status: 2
                 }
             });
         }

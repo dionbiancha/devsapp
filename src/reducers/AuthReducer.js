@@ -7,7 +7,6 @@ const initialState = {
 const AuthReducer = (state = initialState, action) => {
     
     if(action.type == 'changeStatus') {
-        alert("RETURN: "+action.payload.status);
         return {...state, status:action.payload.status};
     }
     
