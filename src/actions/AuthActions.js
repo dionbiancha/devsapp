@@ -58,6 +58,38 @@ export const signUp = (name, email, password) => {
     };
 };
 
+export default signIn = (email, password) => {
+    return (dispatch) => {
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then((user)=>{
+                let uid = firebase.auth().currentUser.uid;
+
+                dispatch({
+                    type: 'changeUid',
+                    payload: {
+                        uid: uid
+                    }
+                });
+            })
+            .catch((error)=>{
+                switch(error.code) {
+                    case 'auth/invalid-email':
+                        alert("Email inválido!");
+                        break;
+                    case 'auth/user-disabled':
+                        alert("Seu usuário está desativado!");
+                        break;
+                    case 'auth/user-not-found':
+                        alert("Não existe este usuário!");
+                        break;
+                    case 'auth/wrong-password':
+                        alert("E-mail ou senha inválidos!");
+                        break;
+                }
+            });
+    };
+};
+
 export const changeEmail = (email) => {
    return {
     type: 'changeEmail',

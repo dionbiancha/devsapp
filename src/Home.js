@@ -19,7 +19,7 @@ export class Home extends Component {
     }
 
     signinButton() {
-
+       this.props.navigation.navigate('SignIn');
     }
 
     signupButton() {
