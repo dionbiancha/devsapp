@@ -1,43 +1,37 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { connect } from 'react-redux';
+import { createAppContainer } from 'react-navigation';
+import { createBottomTabNavigator  } from 'react-navigation-tabs';
+//import { connect } from 'react-redux';
 
+import ConversasList from './ConversasList';
+import ContatoList from './ContatoList';
+import Config from './Config';
 
-export class Conversas extends Component {
-    
-    static navigationOptions = {
-        title: '',
-        header: null
+const ConversasNavigator = createBottomTabNavigator ({
+    ConversasList: {
+        screen: ConversasList
+    },
+    ContatoList: {
+        screen: ContatoList
+    },
+    Config: {
+        screen: Config
     }
-    
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-
-    render() {
-        return(
-            <View style={styles.container}>
-                <Text>Pagina Conversas</Text>
-                <Text>{this.props.uid}</Text>
-            </View>
-        );
-    }
-}
-
-const styles = StyleSheet.create({
-    container: {
-        margin: 10
-    }
+}, {
+    //Refatorar altura da Tab
+    tabBarOptions: {
+        activeTintColor: '#ffffff',
+        inactiveTintColor: '#E2E2E2',
+        labelStyle: {
+            fontSize: 18,
+            lineHeight: 50
+        },
+        style: {
+          backgroundColor: '#1DB954',
+          height: 50
+        }
+      }
 });
 
-const mapStateToProps = (state) => {
-    return {
-        status: state.auth.status,
-        uid: state.auth.uid
-    };
-};
+export default createAppContainer(ConversasNavigator);
 
-const ConversasConnect = connect(mapStateToProps, {  })(Conversas);
-
-export default ConversasConnect;

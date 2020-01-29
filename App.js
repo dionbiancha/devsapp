@@ -24,7 +24,10 @@ const Stack = createStackNavigator({
     screen: Home
   },
   Conversas: {
-    screen: Conversas
+    screen: Conversas,
+    navigationOptions: {
+      header: null
+    }
   },
   SignUp: {
     screen: SignUp
