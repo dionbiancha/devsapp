@@ -58,7 +58,7 @@ export const signUp = (name, email, password) => {
     };
 };
 
-export default signIn = (email, password) => {
+export const signIn = (email, password) => {
     return (dispatch) => {
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then((user)=>{
