@@ -29,7 +29,7 @@ const ConversasNavigator = createBottomTabNavigator ({
         style: {
           backgroundColor: '#1DB954',
           height: 50
-        }
+        } 
       }
 });
 
