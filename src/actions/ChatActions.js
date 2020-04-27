@@ -44,5 +44,12 @@ export const createChat = (userUid1, userUid2) => {
         .child(chatId).set({
             id: chatId
         });
+
+        dispatch({
+            type:'setActiveChat',
+            payload: {
+                chatid: chatId
+            }
+        });
     };
 };

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, FlatList, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { getContactList, createChat } from '../actions/ChatActions';
 
@@ -24,7 +24,9 @@ export class ContatoList extends Component {
 
     contatoList(item) {
         this.props.createChat( this.props.uid, item.key );
+        this.props.navigation.navigate('ConversasStack');
     }
+
     render() {
         return(
             <View style={styles.container}>
@@ -47,7 +49,6 @@ const mapStateToProps = (state) => {
     return {
         uid: state.auth.uid,
         contacts: state.chat.contacts
-
     };
 };
 

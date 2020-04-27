@@ -2,30 +2,22 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
-export class ConversasList extends Component {
+
+export class ConversaInterna extends Component {
     
     static navigationOptions = {
-        title: '',
-        tabBarLabel: 'Conversas',
-        header: null
+        title: 'Conversa Interna'
     }
     
     constructor(props) {
         super(props);
         this.state = {};
-
-    }
-
-    componentDidUpdate() {
-        if(this.props.activeChat != '') {
-            this.props.navigation.navigate('ConversaInterna');
-        }
     }
 
     render() {
         return(
             <View style={styles.container}>
-                <Text>uid - {this.props.uid}</Text>
+                <Text>Conversa Interna</Text>
             </View>
         );
     }
@@ -39,11 +31,11 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
     return {
-        uid: state.auth.uid,
-        activeChat: state.chat.activeChat
+        status: state.auth.status,
+        uid: state.auth.uid
     };
 };
 
-const ConversasListConnect = connect(mapStateToProps, {  })(ConversasList);
+const ConversaInternaConnect = connect(mapStateToProps, {  })(ConversaInterna);
 
-export default ConversasListConnect;
+export default ConversaInternaConnect;
