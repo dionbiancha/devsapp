@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
+
+import { getChatList, setActiveChat } from '../actions/ChatActions';
+import ConversaItem from '../components/ConversasList/ConversaItem';
 
 export class ConversasList extends Component {
     
@@ -14,6 +17,8 @@ export class ConversasList extends Component {
         super(props);
         this.state = {};
 
+        this.props.getChatList( this.props.uid );
+        this.conversaClick = this.conversaClick.bind(this);
     }
 
     componentDidUpdate() {
@@ -22,10 +27,18 @@ export class ConversasList extends Component {
         }
     }
 
+    conversaClick(data) {
+        this.props.setActiveChat( data.key );
+    }
+
     render() {
         return(
             <View style={styles.container}>
-                <Text>uid - {this.props.uid}</Text>
+                <FlatList 
+                    data={this.props.chats}
+                    renderItem={({item}) => <ConversaItem data={item} 
+                    onPress={this.conversaClick}/>}
+                />
             </View>
         );
     }
@@ -40,10 +53,12 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
     return {
         uid: state.auth.uid,
-        activeChat: state.chat.activeChat
+        activeChat: state.chat.activeChat,
+        chats: state.chat.chats
     };
 };
 
-const ConversasListConnect = connect(mapStateToProps, {  })(ConversasList);
+const ConversasListConnect = connect(mapStateToProps, 
+    { getChatList, setActiveChat })(ConversasList);
 
 export default ConversasListConnect;
