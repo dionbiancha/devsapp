@@ -23,7 +23,7 @@ export class ConversasList extends Component {
 
     componentDidUpdate() {
         if(this.props.activeChat != '') {
-            this.props.navigation.navigate('ConversaInterna');
+            this.props.navigation.navigate('ConversaInterna', {title: this.props.activeChatTitle});
         }
     }
 
@@ -54,7 +54,8 @@ const mapStateToProps = (state) => {
     return {
         uid: state.auth.uid,
         activeChat: state.chat.activeChat,
-        chats: state.chat.chats
+        chats: state.chat.chats,
+        activeChatTitle: state.chat.activeChatTitle
     };
 };
 

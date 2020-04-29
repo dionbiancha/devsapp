@@ -18,9 +18,11 @@ export class Preload extends Component {
         this.directPages = this.directPages.bind(this);
 
         this.props.checkLogin();
-    }
-    directPages() {
 
+        window.globalNavigator = this.props.navigation;
+    }
+
+    directPages() {
         switch(this.props.status) {
             case 1:
                 this.props.navigation.dispatch(StackActions.reset({
