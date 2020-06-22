@@ -11,6 +11,8 @@ import {
     } from 'react-native';
 import { connect } from 'react-redux';
 
+import MensagemItem from '../components/ConversaInterna/MensagemItem';
+
 import { setActiveChat } from '../actions/ChatActions';
 
 export class ConversaInterna extends Component {
@@ -31,7 +33,14 @@ export class ConversaInterna extends Component {
     
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            tmpMsg: [
+                {key:1 , m: 'Oi tudo bem?'},
+                {key:2 , m: 'Sim e você?'},
+                {key:3 , m: 'Tudo ótimo :D'},
+                {key:4 , m: 'Essa é uma mensagem bem grande que tem como objetivo fazer alguma coisa para aparecer :D'}
+            ]
+        };
 
         this.voltar = this.voltar.bind(this);
     }
@@ -57,8 +66,8 @@ export class ConversaInterna extends Component {
             <View style={styles.container}>
                 <FlatList 
                     style={styles.chatArea}
-                    data={[]}
-                    renderItem={()=><Text>...</Text>}
+                    data={this.state.tmpMsg}
+                    renderItem={({item})=><MensagemItem data={item}/>}
                 />
                 <View style={styles.sendArea}>
                     <TextInput style={styles.sendInput}/>
@@ -76,7 +85,8 @@ const styles = StyleSheet.create({
         flex: 1
     },
     chatArea: {
-        flex: 1
+        flex: 1,
+        backgroundColor: '#CCCCCC'
     },
     sendArea: {
         height: 50,
