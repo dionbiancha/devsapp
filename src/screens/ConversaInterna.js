@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableHighlight, Image, BackHandler } from 'react-native';
+import { 
+    View, 
+    Text, 
+    FlatList,
+    StyleSheet, 
+    TouchableHighlight, 
+    Image, 
+    BackHandler ,
+    TextInput
+    } from 'react-native';
 import { connect } from 'react-redux';
 
 import { setActiveChat } from '../actions/ChatActions';
-
 
 export class ConversaInterna extends Component {
     
     static navigationOptions = ({navigation}) => ({
         title: navigation.state.params.title,
+        tabBarVisible: false,
         headerLeft: (
             <TouchableHighlight onPress={() => { 
                 navigation.state.params.voltarFunction()
@@ -39,14 +48,24 @@ export class ConversaInterna extends Component {
     voltar() {
         this.props.setActiveChat('');
         this.props.navigation.goBack();
-
+        
         return true;
     }
 
     render() {
         return(
             <View style={styles.container}>
-                <Text>Conversa Interna</Text>
+                <FlatList 
+                    style={styles.chatArea}
+                    data={[]}
+                    renderItem={()=><Text>...</Text>}
+                />
+                <View style={styles.sendArea}>
+                    <TextInput style={styles.sendInput}/>
+                    <TouchableHighlight style={styles.sendButtun}>
+                        <Image style={styles.sendImage} source={require('../assets/images/send.png')} />
+                    </TouchableHighlight>
+                </View>
             </View>
         );
     }
@@ -54,7 +73,27 @@ export class ConversaInterna extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        margin: 10
+        flex: 1
+    },
+    chatArea: {
+        flex: 1
+    },
+    sendArea: {
+        height: 50,
+        flexDirection: 'row',
+        backgroundColor: '#EEEEEE'
+    },
+    sendInput: {
+        height: 50,
+        flex: 1
+    },
+    sendButtun: {
+        width: 50,
+        height: 50
+    },
+    sendImage: {
+        width: 50,
+        height: 50
     }
 });
 

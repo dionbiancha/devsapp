@@ -10,7 +10,7 @@ export class ConversasList extends Component {
     static navigationOptions = {
         title: '',
         tabBarLabel: 'Conversas',
-        header: null
+        header: null,
     }
     
     constructor(props) {

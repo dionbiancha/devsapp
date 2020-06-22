@@ -5,15 +5,24 @@ import ConversasList from './ConversasList';
 import ConversaInterna from './ConversaInterna';
 
 
-const Stack = createStackNavigator({
+const ConversasStackNavigator = createStackNavigator({
   ConversasList: {
     screen: ConversasList
   },
   ConversaInterna: {
-    screen: ConversaInterna
+    screen: ConversaInterna,
   }
 });
 
-const ConversasStackNavigator = createAppContainer(Stack);
+ConversasStackNavigator.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+  }
+
+  return {
+    tabBarVisible,
+  };
+};
 
 export default ConversasStackNavigator;
