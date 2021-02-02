@@ -1,5 +1,4 @@
 <h1 align="center">
-      <img alt="Devsapp" src="https://res.cloudinary.com/dionbiancha/image/upload/v1610505556/github/ic_launcher_pyhdby.png" />
     <br>
     Devsapp
 </h1>
